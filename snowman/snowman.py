@@ -76,7 +76,8 @@ def get_letter_from_user(word_dict, wrong_letters):
 def build_word_dict(word):
     word_dict = {}
     for letter in word:
-        word_dict[letter] = False
+        if letter.isalpha():
+            word_dict[letter] = False
 
     return word_dict
 
@@ -93,11 +94,10 @@ def build_game_board(word, word_dict):
     output_letters = []
     for elem in word:
         if elem in word_dict:
-            output_letters += elem
-        elif word_dict[elem]:
-            output_letters += elem
-        else:
-            output_letters += "_"
+            if word_dict[elem]:
+                output_letters += elem
+            else:
+                output_letters += "_"
 
     return " ".join(output_letters)
 
